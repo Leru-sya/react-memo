@@ -56,7 +56,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
   const [gameStartDate, setGameStartDate] = useState(null);
   const [gameEndDate, setGameEndDate] = useState(null);
 
-  let isTop = !isEasy && pairsCount === 3 && status === STATUS_WON;
+  let isTop = !isEasy && pairsCount === 9 && status === STATUS_WON;
 
   const [timer, setTimer] = useState({
     seconds: 0,
