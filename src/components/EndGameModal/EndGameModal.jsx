@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { addLeader, getLeaders } from "../../api";
 import { Link } from "react-router-dom";
 
-export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, onClick, isTop }) {
+export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, onClick, isTop, achievement }) {
   const [nameLeader, setNameLeader] = useState("");
   const gameTime = gameDurationMinutes * 60 + gameDurationSeconds;
   const [newLeader, setNewLeader] = useState(false);
@@ -30,6 +30,7 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
     addLeader({
       name: nameLeader || "Пользователь",
       time: gameTime,
+      achievements: achievement,
     })
       .then(({ leaders }) => {
         console.log(leaders);
@@ -38,7 +39,6 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
         alert(error.message);
       });
   }
-
   const title = isWon ? (newLeader ? "Вы попали на Лидерборд!" : "Вы победили!") : "Вы проиграли!";
 
   const imgSrc = isWon ? celebrationImageUrl : deadImageUrl;
